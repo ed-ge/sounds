@@ -25,7 +25,7 @@ let Scenes = {
   ]
 }
 
-let scale = .05;
+let scale = .5;
 let startY = 0;
 let stopY = 20;
 
