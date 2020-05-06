@@ -26,7 +26,7 @@ let Scenes = {
 }
 
 let scale = .5;
-let startY = 0;
+let startY = -20;
 let stopY = 20;
 
 class BallBehavior extends Base.Behavior {
