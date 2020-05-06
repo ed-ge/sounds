@@ -25,7 +25,7 @@ let Scenes = {
   ]
 }
 
-let scale = .5;
+let scale = .1;
 let startY = -20;
 let stopY = 20;
 
@@ -68,8 +68,8 @@ class SpawnerBehavior extends Base.Behavior {
   }
   update() {
     this.ticksSinceLastSpawn++;
-    if (this.ticksSinceLastSpawn >= 100) {
-      this.ticksSinceLastSpawn -= 100;
+    if (this.ticksSinceLastSpawn >= 125) {
+      this.ticksSinceLastSpawn -= 125;
       this.spawn();
     }
   }
