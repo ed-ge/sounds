@@ -27,23 +27,25 @@ let Scenes = {
 
 let scale = .1;
 let startY = -20;
-let stopY = 20;
+let stopY = 30;
 
 class BallBehavior extends Base.Behavior {
   start() {
     this.time = 0;
   }
   update() {
-    this.time += .1;
-    this.gameObject.y = -this.time;
+    this.time += .2;
+    let y = -(this.time + startY);
+    console.log(y);
+    this.gameObject.y = y;
     this.gameObject.x = Math.sin(this.time/2) * .5;
     if(this.time < 1){
       this.gameObject.scaleX = this.time * scale;
       this.gameObject.scaleY = this.time * scale;
     }
-    else if (this.time > stopY - 1){
-      this.gameObject.scaleX = (stopY - this.time) * scale;
-      this.gameObject.scaleY = (stopY - this.time) * scale;
+    else if ( -y> stopY - 1){
+      this.gameObject.scaleX = (stopY +y) * scale;
+      this.gameObject.scaleY = (stopY + y) * scale;
     }
     else{
       this.gameObject.scaleX = scale;
@@ -63,7 +65,7 @@ class BallBehavior extends Base.Behavior {
 class SpawnerBehavior extends Base.Behavior {
   start() {
     this.nextLetter = 0;
-    this.letters = ["p", "m", "x"]
+    this.letters = ["1", "2", "3", "4", "5", "6", "7"]
     this.ticksSinceLastSpawn = 100;
   }
   update() {
@@ -81,7 +83,10 @@ class SpawnerBehavior extends Base.Behavior {
     behavior.start();
     let letter = Base.SceneManager.currentScene.instantiate(Base.Prefabs.Text, new Base.Point(-12, 8), new Base.Point(2, 2), 0, object);
     let textComponent = letter.getComponent("TextComponent");
+    textComponent.fill = "black"
+    let number = Math.floor(Math.random() * this.letters.length);
     textComponent.text = this.letters[(this.nextLetter++)%this.letters.length];
+    // textComponent.text = this.letters[number];
     
   }
 }
